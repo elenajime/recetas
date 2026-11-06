@@ -4,15 +4,15 @@ Web app para iPhone: guarda recetas de vídeos de TikTok/Instagram, lista de la 
 Todo gratis. Las recetas se guardan solo en el móvil, con el enlace al vídeo original.
 
 ```
-app/      la app (HTML/JS, sin compilar) → GitHub Pages
+docs/     la app (HTML/JS, sin compilar) → GitHub Pages
 worker/   servidor de importación → Cloudflare Workers (plan gratis)
-docs/     documento de diseño
+design/   documento de diseño
 ```
 
 ## 1. Publicar la app (GitHub Pages)
 
 1. Crea un repositorio en tu GitHub personal y sube este proyecto.
-2. Settings → Pages → Source: *GitHub Actions* o rama `main` con carpeta `/app` (si la opción de carpeta no sale, mueve el contenido de `app/` a `/docs` y elige `/docs`).
+2. Settings → Pages → Source: rama `main`, carpeta `/docs`.
 3. La app quedará en `https://TU_USUARIO.github.io/TU_REPO/`.
 
 ## 2. Servidor de importación (Cloudflare Workers, gratis)
@@ -24,7 +24,7 @@ docs/     documento de diseño
    - `ALLOWED_ORIGIN` = `https://TU_USUARIO.github.io` (recomendado).
    - `APP_TOKEN` = una palabra al azar (opcional).
    - `GEMINI_MODEL` solo si el modelo por defecto (`gemini-2.0-flash`) ya no existe; pon otro modelo gratuito.
-4. Copia la URL del Worker en `app/config.js` (`workerUrl`, y `token` si usaste `APP_TOKEN`) y vuelve a subir.
+4. Copia la URL del Worker en `docs/config.js` (`workerUrl`, y `token` si usaste `APP_TOKEN`) y vuelve a subir.
 
 ## 3. Instalar en el iPhone
 
@@ -51,6 +51,6 @@ Si el atajo abre Safari en vez de la app instalada, usa la app manualmente: pega
 ## Probar en local
 
 ```
-cd app && python3 -m http.server 8765
+cd docs && python3 -m http.server 8765
 ```
 Abre http://127.0.0.1:8765/
